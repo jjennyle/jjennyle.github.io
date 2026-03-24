@@ -1,1 +1,159 @@
+* {
+  box-sizing: border-box;
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111111;
+  background-color: #f7f7f5;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero {
+  padding: 24px 64px 80px;
+  background: #f7f7f5;
+}
+
+.navigasjon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 72px;
+}
+
+.navigasjon ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.hero-innhold {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-tekst h1 {
+  font-size: 56px;
+  line-height: 1.05;
+  margin: 12px 0 20px;
+}
+
+.hero-tekst p {
+  max-width: 540px;
+}
+
+.etikett {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.knapp {
+  display: inline-block;
+  margin-top: 24px;
+  background: #111111;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 999px;
+}
+
+.hero-bilde img {
+  border-radius: 24px;
+}
+
+.seksjon {
+  padding: 80px 64px;
+}
+
+.seksjon.lys {
+  background: white;
+}
+
+.seksjon h2 {
+  font-size: 36px;
+  margin-bottom: 28px;
+}
+
+.kort-rutenett {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.prosjektkort {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.kort-innhold {
+  padding: 24px;
+}
+
+.kategori {
+  font-size: 13px;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.kontaktliste {
+  list-style: none;
+  padding: 0;
+}
+
+.kontaktliste li {
+  margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .seksjon {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hero-innhold,
+  .kort-rutenett {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-tekst h1 {
+    font-size: 40px;
+  }
+
+  .navigasjon {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .navigasjon ul {
+    flex-wrap: wrap;
+  }
+}
