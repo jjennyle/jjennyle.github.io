@@ -1,112 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jenny Le | UX Portfolio</title>
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="topbar-inner">
-        <a class="brand" href="#home">Jenny Le</a>
-        <nav class="nav" aria-label="Primary">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenny's Design Records </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-routes"></div>
 
-    <main id="home">
-      <section class="hero">
-        <p class="kicker">UX Design Student</p>
-        <h1>Simple interfaces. Thoughtful experiences.</h1>
-        <p class="hero-text">
-          I design digital products that feel calm, clear, and human. My work
-          focuses on usability, visual hierarchy, and making complex journeys
-          feel effortless.
-        </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#work">View Projects</a>
-          <a class="button button-secondary" href="#about">About Me</a>
-        </div>
-      </section>
-
-      <section class="feature feature-dark">
-        <div class="feature-copy">
-          <p class="eyebrow">Featured Project</p>
-          <h2>Wellness app redesign for more confidence and less friction.</h2>
-          <p>
-            A UX case study focused on onboarding, habit tracking, and
-            simplifying decision points for first-time users.
-          </p>
-        </div>
-        <div class="device-showcase" aria-hidden="true">
-          <div class="phone phone-back"></div>
-          <div class="phone phone-front">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="ui-card ui-card-large"></div>
-              <div class="ui-card ui-card-small"></div>
-              <div class="ui-chart"></div>
+    <main class="window">
+        <header class="toppfelt">
+            <div class="tittel-venstre">
+                
+                <h1>Jenny's Design Records</h1>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section class="statement">
-        <p>Design should feel obvious, not loud.</p>
-      </section>
+            <div class="vindusknapper">
+                <button aria-label="Minimer">─</button>
+                <button aria-label="Maksimer">□</button>
+                <button aria-label="Lukk">✕</button>
+            </div>
+        </header>
 
-      <section class="work-intro" id="work">
-        <p class="eyebrow">Selected Work</p>
-        <h2>Projects shaped by research, clarity, and visual restraint.</h2>
-      </section>
+        <section class="verktøylinje">
+            <div class="nav-knapper">
+                <button>←</button>
+                <button>→</button>
 
-      <section class="project-grid">
-        <article class="project project-light">
-          <p class="project-type">Mobile UX</p>
-          <h3>Habit Tracking App</h3>
-          <p>
-            Reworked the user flow to reduce cognitive load and make progress
-            more motivating day to day.
-          </p>
-        </article>
+            </div>
 
-        <article class="project project-soft">
-          <p class="project-type">Service Design</p>
-          <h3>Campus Resource Portal</h3>
-          <p>
-            Structured navigation and content to help students reach the right
-            service faster with less confusion.
-          </p>
-        </article>
+            <div class="adressefelt">
+                ♫ Welcome to My World - Jenny Le
+            </div>
 
-        <article class="project project-dark">
-          <p class="project-type">Checkout UX</p>
-          <h3>E-commerce Flow</h3>
-          <p>
-            Improved trust and readability across payment, review, and final
-            confirmation steps.
-          </p>
-        </article>
-      </section>
+            <button class="oppdater-knapp">↻</button>
 
-      <section class="about-section" id="about">
-        <p class="eyebrow">About</p>
-        <h2>I care about how digital products make people feel.</h2>
-        <p>
-          I study UX design with a focus on research, interaction design, and
-          clean interface systems. I like turning messy problems into experiences
-          that feel simple, useful, and well considered.
-        </p>
-      </section>
+            <div class="mappeknapp">
+                2026
+            </div>
+        </section>
+
+        <section class="innhold">
+            <aside class="sidefelt">
+                <nav>
+                    <ul>
+                        <li class="aktiv">🌍 Welcome to My World</li>
+                        <li>📦 PAT</li>
+                        <li>☀️ OutsAIde</li>
+                        <li>🐱 Pawtential</li>
+                        <li>🧸 Bearhug</li>
+                        <li>🌸 Resume</li>
+                        <li>🩷 About me</li>
+                    </ul>
+                </nav>
+
+                
+            </aside>
+
+            <section class="hovedinnhold">
+                <div class="intro-tekst">
+                    <h2>Welcome!</h2>
+                    <p>
+                        Hi, I’m Jenny — an UX design student from Oslo passionate about creating thoughtful,
+                        playful, and user-centered digital experiences. This portfolio is a curated
+                        collection of my projects, where each case reflects my interest in UX,
+                        interaction design, and visual storytelling. Feel free to explore!
+                    </p>
+                </div>
+
+                <div class="artwork-stack">
+                    <div class="plate-omslag">
+                        <img src="assets/jenny.jpg" class="coverbilde" alt="Portrait of Jenny">
+                        <div class="vinyl">
+                            <div class="vinyl-midte"></div>
+                        </div>
+                    </div>
+                    <audio class="audio-bar" controls>
+                        <source src="music/lofi.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </section>
+        </section>
+
+        
+        
     </main>
-
-    <footer class="footer" id="contact">
-      <p>Available for internships, collaboration, and portfolio feedback.</p>
-      <a href="mailto:hello@jennyle.com">hello@jennyle.com</a>
-    </footer>
-  </body>
+</body>
 </html>
