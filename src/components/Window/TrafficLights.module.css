@@ -1,0 +1,42 @@
+.lights {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.light {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.light:hover {
+  filter: brightness(1.05);
+  transform: scale(1.08);
+}
+
+.close { background: #d88a9c; }
+.min   { background: #d6b98a; }
+.max   { background: #95c2a4; }
+
+.icon {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+  user-select: none;
+}
+.iconSm {
+  font-size: 8px;
+}
+
+.lights:hover .icon {
+  opacity: 1;
+}

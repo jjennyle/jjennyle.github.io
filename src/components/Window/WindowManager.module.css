@@ -1,0 +1,9 @@
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-window);
+  pointer-events: none;
+}
+.layer > * {
+  pointer-events: auto;
+}

@@ -1,0 +1,39 @@
+.wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-wallpaper);
+  overflow: hidden;
+  transition: background 0.6s ease;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, var(--c), transparent 68%);
+  transform: translate(-50%, -50%);
+  filter: blur(40px);
+  opacity: 0.75;
+  animation: drift calc(34s / var(--speed)) ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-44%, -56%) scale(1.12);
+  }
+  100% {
+    transform: translate(-54%, -46%) scale(0.96);
+  }
+}
+
+/* subtle paper grain */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}

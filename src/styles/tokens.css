@@ -1,0 +1,88 @@
+/* ============================================================
+   jnieOS — Design Tokens
+   All theming flows through these variables. Settings.app and
+   OSContext rewrite the accent / wallpaper / transparency / theme
+   custom properties at runtime, so every surface re-skins live.
+   ============================================================ */
+
+:root {
+  /* Accent (overwritten by Settings via --accent) */
+  --accent: #9b8bd6;
+  --accent-soft: #c9bee9;
+  --accent-deep: #7a68c4;
+
+  /* Type */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-ui: "Inter Tight", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-script: "Caveat", cursive;
+
+  /* Geometry */
+  --r-window: 22px;
+  --r-card: 18px;
+  --r-sm: 12px;
+  --r-pill: 999px;
+
+  /* Spacing scale */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 20px;
+  --s5: 32px;
+  --s6: 48px;
+
+  /* Glass transparency (overwritten by Settings) */
+  --glass-alpha: 0.55;
+  --glass-blur: 30px;
+
+  /* Animation speed multiplier (overwritten by Settings) */
+  --speed: 1;
+
+  /* Z layers */
+  --z-wallpaper: 0;
+  --z-icons: 5;
+  --z-widgets: 10;
+  --z-window: 100;
+  --z-dock: 9000;
+  --z-menubar: 9500;
+  --z-boot: 10000;
+}
+
+/* ---------- Light theme (default) ---------- */
+:root,
+[data-theme="light"] {
+  --paper: #f6f4f8;
+  --mist: #ece9f2;
+  --ink: #1b1a20;
+  --ink-soft: #54505e;
+  --ink-faint: #8b8794;
+  --line: rgba(27, 26, 32, 0.08);
+
+  --glass-bg: rgba(255, 255, 255, var(--glass-alpha));
+  --glass-bg-strong: rgba(255, 255, 255, calc(var(--glass-alpha) + 0.25));
+  --glass-border: rgba(255, 255, 255, 0.6);
+
+  --shadow-1: 0 2px 8px rgba(85, 70, 140, 0.06);
+  --shadow-2: 0 12px 40px rgba(85, 70, 140, 0.12);
+  --shadow-3: 0 30px 80px rgba(60, 48, 110, 0.18);
+  --glow: 0 0 0 1px rgba(255, 255, 255, 0.4), 0 8px 30px rgba(120, 100, 200, 0.18);
+}
+
+/* ---------- Dark theme ---------- */
+[data-theme="dark"] {
+  --paper: #15131c;
+  --mist: #1d1a26;
+  --ink: #f1eef8;
+  --ink-soft: #b6b0c6;
+  --ink-faint: #76718a;
+  --line: rgba(255, 255, 255, 0.08);
+
+  --glass-bg: rgba(40, 36, 56, calc(var(--glass-alpha) + 0.1));
+  --glass-bg-strong: rgba(48, 43, 66, calc(var(--glass-alpha) + 0.3));
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  --shadow-1: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 12px 40px rgba(0, 0, 0, 0.45);
+  --shadow-3: 0 30px 80px rgba(0, 0, 0, 0.55);
+  --glow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 8px 30px rgba(120, 100, 220, 0.25);
+}

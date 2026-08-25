@@ -1,0 +1,67 @@
+.wrap {
+  padding: var(--s5) var(--s5);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-top: 4px;
+  margin-bottom: var(--s5);
+}
+
+.channels {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.channel {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 8px;
+  border-radius: var(--r-sm);
+  transition: background 0.15s;
+}
+.channel:hover {
+  background: var(--glass-bg);
+}
+
+.cIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--accent-deep);
+  background: var(--accent-soft);
+  flex-shrink: 0;
+}
+
+.cText {
+  display: flex;
+  flex-direction: column;
+}
+
+.cLabel {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.cValue {
+  font-size: 14px;
+  color: var(--ink);
+}

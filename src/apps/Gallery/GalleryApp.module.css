@@ -1,0 +1,75 @@
+.wrap {
+  padding: var(--s4) var(--s5) var(--s5);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.filters {
+  position: sticky;
+  top: 0;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-bottom: var(--s4);
+  z-index: 2;
+}
+
+.filter {
+  font-size: 13px;
+  color: var(--ink-soft);
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--glass-bg);
+  transition: all 0.2s ease;
+}
+.filter:hover {
+  color: var(--ink);
+}
+.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+}
+
+.masonry {
+  columns: 3;
+  column-gap: var(--s4);
+}
+
+.tile {
+  break-inside: avoid;
+  margin-bottom: var(--s4);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-1);
+}
+
+.img {
+  width: 100%;
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--s3);
+}
+.kind {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-deep);
+}
+.label {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .masonry { columns: 2; }
+}
+@media (max-width: 480px) {
+  .masonry { columns: 1; }
+}
