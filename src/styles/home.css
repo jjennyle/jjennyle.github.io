@@ -251,28 +251,8 @@
 
 /* About */
 .about {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  gap: clamp(32px, 6vw, 80px);
-  align-items: center;
   padding: 72px 0 0;
   border-top: 1px solid var(--line);
-}
-.about__photos {
-  position: relative;
-}
-.about__photo {
-  margin: 0;
-}
-.about__photo img {
-  width: 100%;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-}
-.about__photo--me img {
-  aspect-ratio: 4 / 5;
-  object-position: 62% 30%;
 }
 .about__text > p {
   margin-top: 18px;
@@ -289,15 +269,11 @@
   .intro__facts {
     grid-template-columns: 1fr 1fr;
   }
-  .work,
-  .about {
+  .work {
     grid-template-columns: 1fr;
   }
   .work__visual {
     order: -1;
-  }
-  .about__photos {
-    max-width: 460px;
   }
 }
 

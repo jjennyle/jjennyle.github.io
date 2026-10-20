@@ -144,12 +144,7 @@ function ProjectRow({ project, index }) {
 function About() {
   return (
     <section id="about" className="about">
-      <Reveal className="about__photos">
-        <figure className="about__photo about__photo--me">
-          <img src="/images/jenny.webp" alt="Jenny at a football match" loading="lazy" />
-        </figure>
-      </Reveal>
-      <Reveal className="about__text" delay={80}>
+      <Reveal className="about__text">
         <p className="eyebrow">About me</p>
         <h2 className="section-title">A bit more about me</h2>
         {profile.about.map((p) => (
