@@ -151,6 +151,10 @@ function About() {
           <p key={p.slice(0, 20)}>{p}</p>
         ))}
       </Reveal>
+      <Reveal className="about__photo" delay={80}>
+        <img src="/images/happy.webp" alt="Happy, a grey and white cat, peeking out of a paper bag" loading="lazy" />
+        <p>Happy</p>
+      </Reveal>
     </section>
   );
 }

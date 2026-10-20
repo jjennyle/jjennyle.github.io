@@ -251,8 +251,26 @@
 
 /* About */
 .about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
+  gap: 32px clamp(32px, 6vw, 80px);
+  align-items: center;
   padding: 72px 0 0;
   border-top: 1px solid var(--line);
+}
+.about__photo img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  transform: rotate(2deg);
+}
+.about__photo p {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-2);
 }
 .about__text > p {
   margin-top: 18px;
@@ -269,8 +287,12 @@
   .intro__facts {
     grid-template-columns: 1fr 1fr;
   }
-  .work {
+  .work,
+  .about {
     grid-template-columns: 1fr;
+  }
+  .about__photo {
+    max-width: 320px;
   }
   .work__visual {
     order: -1;

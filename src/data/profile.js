@@ -15,6 +15,6 @@ export const profile = {
   linkedin: { label: "linkedin.com/in/jjennyle", url: "https://www.linkedin.com/in/jjennyle" },
   about: [
     "I am in my fourth year of the master's programme Informatics: Design, Use, Interaction at UiO. Alongside my studies I work as an IT consultant, where I help students with the technical problems they run into and design internal digital tools.",
-    "When I am not at school or work, I am probably making a new matcha drink.",
+    "When I am not at school or work, I am probably playing with my cat Happy.",
   ],
 };
