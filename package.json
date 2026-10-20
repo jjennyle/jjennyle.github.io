@@ -1,8 +1,8 @@
 {
-  "name": "jnieos",
+  "name": "jjennyle-portfolio",
   "private": true,
   "version": "1.0.0",
-  "description": "jnieOS — a fictional operating system portfolio.",
+  "description": "Portfolio of Jenny Le, UX/UI designer.",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^11.3.19",
     "lucide-react": "^0.408.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

@@ -1,39 +1,32 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { OSProvider } from "./context/OSContext.jsx";
-import { WindowProvider } from "./context/WindowContext.jsx";
-import { useMediaQuery } from "./hooks/useMediaQuery.js";
-import Wallpaper from "./components/Wallpaper.jsx";
-import BootScreen from "./components/BootScreen.jsx";
-import Desktop from "./components/Desktop/Desktop.jsx";
-import MobileShell from "./components/Mobile/MobileShell.jsx";
+import { useEffect, useLayoutEffect } from "react";
+import { usePath } from "./router.jsx";
+import { findProject } from "./data/projects.js";
+import Header from "./components/Header.jsx";
+import CursorGlow from "./components/CursorGlow.jsx";
+import Home from "./pages/Home.jsx";
+import Project from "./pages/Project.jsx";
 
 export default function App() {
-  const [booted, setBooted] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 880px)");
+  const path = usePath();
+  const slug = path.match(/^\/work\/([^/]+)\/?$/)?.[1];
+  const project = slug ? findProject(slug) : null;
+
+  useLayoutEffect(() => {
+    const id = window.location.hash.slice(1);
+    const target = id && document.getElementById(id);
+    if (target) target.scrollIntoView();
+    else window.scrollTo(0, 0);
+  }, [path]);
 
   useEffect(() => {
-    const t = setTimeout(() => setBooted(true), 1300);
-    return () => clearTimeout(t);
-  }, []);
+    document.title = project ? `${project.name} · Jenny Le` : "Jenny Le · UX/UI Designer";
+  }, [project]);
 
   return (
-    <OSProvider>
-      <WindowProvider>
-        <Wallpaper />
-
-        <AnimatePresence>{!booted && <BootScreen key="boot" />}</AnimatePresence>
-
-        {booted && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            {isMobile ? <MobileShell /> : <Desktop />}
-          </motion.div>
-        )}
-      </WindowProvider>
-    </OSProvider>
+    <>
+      <CursorGlow />
+      <Header />
+      {project ? <Project key={project.slug} project={project} /> : <Home />}
+    </>
   );
 }

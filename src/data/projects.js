@@ -1,93 +1,527 @@
-/* Project case studies. Visuals are CSS gradient placeholders
-   (swap `tint` arrays for real screenshots later). */
+/* Case studies. Text is based on Jenny's portfolio PDF.
+   Image names refer to files in /public/images (without .webp).
+
+   Section blocks:
+   - text:    paragraphs (textAfter: the same, but shown after challenges)
+   - quote:   { text, by }
+   - cards:   [{ title, text }]
+   - stats:   [{ value, label }]   big numbers
+   - illustration / sideImage: { src, caption }   shown beside the text
+   - challenges: [{ icon, title, text }]   icon is a key in Project.jsx
+   - fixes:   [{ problem, fix, images }]   challenge -> design move pairs
+   - images:  { kind: "phone" | "screen" | "wide" | "photo", items: [{ src, caption }] } */
 
 export const projects = [
   {
-    id: "maid",
-    name: "mAId",
-    tagline: "AI cleaning assistant",
-    year: "2026",
-    role: "UX/UI Designer",
-    tint: ["#f5c97a", "#e8a84a"],
-    heroImg: "/maid-hero.png",
-    thumb: "/maid-thumb.png",
-    summary: "mAId is an AI-powered cleaning assistant that helps users manage household chores with less stress. By analysing room photos, the app detects clutter, generates step-by-step cleaning guidance, and supports collaboration across household members — making cleaning feel manageable rather than overwhelming.",
-    problem:
-      "Users — especially students and young adults in shared living — struggle not with the physical act of cleaning, but with knowing where to start. Existing chore apps rely on manual task input, creating friction at the exact moment motivation is lowest.",
-    myRole:
-      "I was responsible for the UX/UI design. I started by creating use case diagrams, an app map, and low-fidelity sketches to define the main user flows before moving into high-fidelity designs in Figma. Towards the end of the project, I explored whether a functional prototype could reveal issues that static mockups could not. I used Figma Make and Lovable to turn the designs into working prototypes. However, the results did not match the quality or direction of our designs, so we chose not to develop them further.",
-    process:
-      "Started by mapping out use case scenarios for the two main user types — solo dwellers and shared households. From these scenarios, we created use case diagrams to define system interactions, then moved into Figma to design high-fidelity screens directly based on those use cases. Each screen flow was grounded in a specific user scenario, from uploading a room photo to collaborating on shared tasks.",
-    result:
-      "mAId was delivered as a concept and prototype for Human-AI Interaction Design, taken as an exchange course at Tsinghua University in Spring 2026. The project explored how AI can reduce cognitive load in everyday tasks through guided, image-based interaction.",
-    screens: ["/maid-1.png", "/maid-2.png", "/maid-4.png", "/maid-3.png"],
-    report: "/maid-rapport.pdf",
-    stack: ["Figma", "Lovable", "AI/Computer Vision", "UX Research", "Personas", "Wireframing", "Use Case Diagram"],
-  },
-  {
-    id: "vibely",
-    name: "Vibely",
-    tagline: "Natural language music event search",
-    year: "2026",
-    role: "Designer · Developer",
-    tint: ["#c9b8ec", "#7c5cbf"],
-    heroImg: "/vibely-1.png",
-    thumb: "/vibely-thumb.png",
-    summary: "Vibely is an AI-powered music event retrieval system that lets you search for concerts and events using natural language — no rigid filters required. Instead of typing exact artist names or cities, you describe what you're looking for: the mood, the vibe, the crowd. Built for Web Information Retrieval at Tsinghua University, Spring 2026.",
-    problem:
-      "Existing event platforms rely on explicit query constraints like artist name, city, or venue. When a query can't be satisfied exactly, the results are poor with no meaningful alternatives. There's also no way to search based on mood, atmosphere, or the type of crowd — the way people actually think about events.",
-    myRole:
-      "I worked primarily on the frontend, while also contributing to the Flask backend. I integrated Llama through the Groq API for reranking and worked on the search intent extraction. One of the main challenges was deciding how much the system should infer from vague queries without making assumptions that changed the user's intent. I also spent a lot of time testing different queries and evaluating the results. Since relevance is partly subjective, this was important for improving the ranking and making sure the results actually felt useful.",
-    process:
-      "Crawled US music events via the Ticketmaster API and stored them in a local SQLite database. Built an embedding pipeline using SentenceTransformer to enable semantic search. The ranking system combines BM25 keyword matching and embedding similarity, boosted by a Matched-Criteria Multiplier for fields like artist, city, and genre. A final reranking step uses Llama (via Groq API) to score events on mood and vibe. Each result includes a \"Why this?\" explanation.",
-    result:
-      "Vibely was delivered as a fully functional prototype for Web Information Retrieval, taken as an exchange course at Tsinghua University in Spring 2026. The system successfully handled natural-language queries and returned relevant event suggestions with AI-generated explanations. Key challenges included search intent misunderstanding and limited event descriptions for subjective reranking.",
-    screens: ["/vibely-1.png", "/vibely-2.png", "/vibely-3.png"],
-    stack: ["Python", "Flask", "SQLite", "BM25", "SentenceTransformer", "Llama / Groq API", "Ticketmaster API", "NumPy"],
-  },
-  {
-    id: "outsaide",
+    slug: "outsaide",
     name: "OutsAIde",
-    tagline: "AI-powered app",
-    year: "2025",
-    role: "Project Lead · UX/UI Designer",
-    tint: ["#bcd6ec", "#7fa9d6"],
-    summary: "OutsAIde (pronounced \"outside\") is an Android app that suggests outdoor activities tailored to your preferences and current weather — no planning, just a few taps. Built as part of IN2000 Software Engineering at UiO, Spring 2025.",
-    problem:
-      "Young adults (25–40) want to be active outdoors but struggle to find activities that match both the weather and their personal needs. Weather apps give numbers — not answers. The question was: how can AI bridge that gap?",
-    myRole:
-      "As project lead, I had two main responsibilities: leading the team and designing the product. I planned sprints, handled administrative tasks, and kept our team of six aligned throughout the project. On the design side, I took the app from low-fidelity sketches to high-fidelity prototypes, conducted user interviews, and led user testing after each sprint. I was also responsible for evaluating the design against WCAG accessibility guidelines. I also contributed to the frontend development, including implementing the Result screen.",
-    process:
-      "Started with Crazy 8 sketching sessions to explore 8 screen ideas per minute, then narrowed to 4 high-fidelity Figma wireframes for user testing. Built the MVP over two weeks using Kotlin and Jetpack Compose. Iterated through 6 sprints using Scrumban — guerrilla testing after each sprint shaped the final design. The owl mascot replaced an early robot concept after users found the robot intimidating. AI suggestions are generated by an Azure OpenAI agent using MET Norway weather data, location, and the user's chosen preferences across 6 dropdown menus.",
-    result:
-      "OutsAIde was completed and delivered as a fully functional Android app at the end of Spring 2025. User testing showed that participants appreciated the simplicity — most completed the flow in under 30 seconds.",
-    stack: ["Kotlin", "Jetpack Compose", "Android Studio", "Figma", "Azure OpenAI", "MET Norway API", "Scrumban", "GitHub"],
-    heroImg: "/outsaide-mockup.png",
-    thumb: "/outsaide-owl.png",
-    screens: ["/outsaide-1.png", "/outsaide-2.png"],
-    report: "/outsaide-rapport.pdf",
+    flower: "flower-blue",
+    theme: { bg: "#acd0ee", ink: "#122d4a", accent: "#2f6aa8", panel: "#d6e7f6" },
+    summary: "Suggests outdoor activities based on users' preferences and the weather, using AI and weather data from MET.",
+    scope: ["Project lead", "Interviews", "Prototyping", "User testing"],
+    tools: ["Figma", "Jetpack Compose", "Kotlin", "Azure OpenAI API"],
+    cover: { kind: "phone", items: ["outsaide-start", "outsaide-home", "outsaide-result"] },
+    badge: "IN2000, UiO",
+    headline: "Outdoor plans that fit the weather",
+    intro:
+      "OutsAIde is an Android app that uses AI to suggest outdoor activities based on users' preferences and the weather. It was made in a cross-disciplinary team in the course IN2000 Software Engineering at the University of Oslo.",
+    question:
+      "How can we use AI to make planning outdoor activities simpler, by bringing activity ideas and weather information together in one place?",
+    facts: [
+      { label: "Target users", value: "Young adults (25 to 40), with or without kids, looking for things to do alone or with family and friends" },
+      { label: "Team", value: "Two designers and four developers" },
+      { label: "My role", value: "Project Lead & Interaction Designer" },
+      { label: "Responsibilities", value: "Team coordination, design process leadership, UI/UX design and front-end development" },
+    ],
+    sections: [
+      {
+        eyebrow: "User challenges",
+        title: "Planning a day outside takes more effort than it should",
+        challenges: [
+          {
+            illustration: "scatteredApps",
+            title: "Information in many places",
+            text: "Activity ideas and the weather forecast are found in different apps and websites.",
+          },
+          {
+            illustration: "unsureWeather",
+            title: "Unsure about the weather",
+            text: "It is hard to know which activities suit the weather on a given day.",
+          },
+          {
+            illustration: "noIdeas",
+            title: "Running out of ideas",
+            text: "Finding something new to do, alone or with family and friends, takes time.",
+          },
+          {
+            illustration: "warning",
+            title: "Warnings are easy to miss",
+            text: "Weather warnings are not always noticed when people plan a trip outside.",
+          },
+        ],
+      },
+      {
+        eyebrow: "From insight to prototype",
+        title: "People wanted it simple",
+        textAfter: [
+          "Findings: Users wanted a simple, clear app that would quickly suggest real outdoor activities.",
+          "Combining interviews and a survey helped us check our findings and get a fuller picture of what users needed.",
+        ],
+        challenges: [
+          {
+            illustration: "interviews",
+            title: "6 interviews",
+            text: "Semi-structured interviews with people in the target group.",
+          },
+          {
+            illustration: "proposals",
+            title: "4 design proposals",
+            text: "Four ways to organise the app, compared by the target group.",
+          },
+          {
+            illustration: "surveyAnswers",
+            title: "22 survey answers",
+            text: "A survey on how information and features should be organised.",
+          },
+        ],
+        images: {
+          kind: "photo",
+          items: [
+            { src: "outsaide-crazy8", caption: "Crazy 8 sketches" },
+            { src: "outsaide-affinity", caption: "Affinity diagram" },
+            { src: "outsaide-proposals", caption: "Design proposal 1 was the target group's favourite" },
+          ],
+        },
+      },
+      {
+        eyebrow: "Testing",
+        title: "New insights through testing",
+        text: [
+          "The design went through four drafts. We tested it with guerrilla testing, user testing and system testing, and used what we found to adjust wording, structure, features and accessibility.",
+        ],
+        fixes: [
+          {
+            problem: "The app gave vague suggestions when users did not fill in much.",
+            fix: "More dropdown menus and clearer wording. Only Duration, Date and Activity are required.",
+            images: ["outsaide-fix-dropdowns", "outsaide-home"],
+          },
+          {
+            problem: "The result screen had too much text, and some of it was not relevant.",
+            fix: "Shorter text that is easier to read.",
+            images: ["outsaide-fix-result", "outsaide-result"],
+          },
+          {
+            problem: "The navigation bar overlapped saved searches.",
+            fix: "More contrast between the cards and the navigation bar.",
+            images: ["outsaide-fix-contrast-1", "outsaide-fix-contrast-2"],
+          },
+          {
+            problem: "The app was too bright for some users.",
+            fix: "Dark mode.",
+            images: ["outsaide-home", "outsaide-dark"],
+          },
+        ],
+      },
+      {
+        eyebrow: "The result",
+        title: "The final product",
+        text: [
+          "An interactive Android app that uses AI and weather data from MET, the Norwegian Meteorological Institute. Users pick their preferences in six dropdown menus and get activity suggestions that fit.",
+        ],
+        images: {
+          kind: "phone",
+          items: [
+            { src: "outsaide-start", caption: "Start" },
+            { src: "outsaide-guide", caption: "Guide" },
+            { src: "outsaide-home", caption: "Home" },
+            { src: "outsaide-result", caption: "Result" },
+          ],
+        },
+      },
+      {
+        text: [
+          "Directions open straight in Google Maps, and weather warnings are shown in a clear, structured way.",
+        ],
+        images: {
+          kind: "phone",
+          items: [
+            { src: "outsaide-dropdown", caption: "Dropdown suggestions" },
+            { src: "outsaide-result-end", caption: "End of the result screen" },
+            { src: "outsaide-warning", caption: "Weather warning" },
+            { src: "outsaide-settings", caption: "Settings" },
+          ],
+        },
+      },
+      {
+        eyebrow: "Reflection",
+        title: "Three things I am taking with me",
+        cards: [
+          {
+            title: "Working across disciplines",
+            text: "Different backgrounds and strengths gave us new perspectives and let us learn from each other.",
+          },
+          {
+            title: "Design, development and testing go together",
+            text: "Solutions have to change along the way when new insight or technical limits show up.",
+          },
+          {
+            title: "Test accessibility early",
+            text: "Contrast, colour and universal design should be tested early, not at the end, to avoid big changes that take a lot of time.",
+          },
+        ],
+      },
+    ],
   },
+
   {
-    id: "pawtential",
-    name: "Pawtential",
-    tagline: "Arduino cat toy",
-    year: "2024",
-    role: "UX/UI Designer · Interaction Designer",
-    tint: ["#fdf6cc", "#f9eca0"],
-    heroImg: "/pawtential-hero.jpg",
-    thumb: "/pawtential-thumb.png",
-    summary: "Pawtential is a team of five cat enthusiasts who built Catgym — an automated, Arduino-powered cat toy designed to stimulate cats' hunting instincts while their owners are busy. Built through four iterative design cycles with real cat owners as co-designers, for IN1060 User-Centered Design at UiO.",
-    problem:
-      "Most cat owners love their cats deeply but struggle to find time for regular play. Without stimulation, cats' hunting instincts go unactivated — affecting their health and wellbeing. Existing solutions required constant manual effort from owners. The challenge: how do you design something that benefits the cat, but is designed with and for the owner?",
-    myRole:
-      "I was responsible for the UX and interaction design. The project had two very different users: the cat using the product and the owner living with it. Since only one could give direct feedback, we involved owners as co-designers while observing how the cats interacted with our prototypes. I facilitated a co-design workshop where owners sketched ideas alongside our team, which helped shape Catgym's final design. I also worked hands-on across all four iterations, testing materials and building prototypes from early cardboard mock-ups to the final wooden artefact. The process showed me the value of testing rough prototypes early, rather than spending too much time refining ideas before putting them in front of users.",
-    process:
-      "Ran four design iterations using the Double Diamond model. Started with low-fidelity sketches and workshop prototypes, moved through cardboard mock-ups and a high-fidelity wooden prototype, and ended with the final Catgym artefact. Each iteration was evaluated with real cats in real homes. Key technical challenges included mounting micro servos, calibrating a load cell weight sensor, and implementing the on/off logic in Arduino code.",
-    result:
-      "Catgym was delivered as the final artefact for IN1060 in Spring 2024. During the final evaluation, both cats engaged immediately — scratching, chasing the hanging toys, and triggering the weight sensor to activate the arm. The cat owner said she would keep and use Catgym after the project ended. The team received positive feedback for their thorough user involvement throughout all four iterations.",
-    photos: ["/pawtential-1.jpg", "/pawtential-2.jpg", "/pawtential-3.jpg"],
-    report: "/pawtential-rapport.pdf",
-    site: "https://www.uio.no/studier/emner/matnat/ifi/IN1060/v24/prosjektgrupper/pawtential/",
-    stack: ["Arduino", "Figma", "User Research", "Prototyping", "Co-design", "Thematic Analysis"],
+    slug: "pat",
+    name: "PAT",
+    flower: "flower-navy",
+    theme: { bg: "#171d3a", ink: "#f4f2ea", accent: "#3a4794", panel: "#171d3a", dark: true, highlight: "#dbe56e" },
+    summary:
+      "Replaces a paper binder with a digital system for registering, tracking and handing out packages at IT-help, UiO.",
+    scope: ["User insight", "Analysis", "Wireframes", "Prototyping"],
+    tools: ["Figma", "Nettskjema"],
+    cover: { kind: "laptop", items: ["pat-dashboard-laptop"] },
+    badge: "In development",
+    headline: "From a paper binder to a package system",
+    intro:
+      "PAT is an internal system for registering packages at IT-help, the IT helpdesk at the University of Oslo. It makes it easier to register, track and handle packages, from the moment they arrive until they are picked up.",
+    question: "How can we reduce manual work and make package handling more structured for IT-help?",
+    facts: [
+      { label: "Target users", value: "Staff at IT-help who receive and hand out packages" },
+      { label: "Team", value: "Two designers and eight developers" },
+      { label: "My role", value: "Interaction Designer" },
+      { label: "Responsibilities", value: "User research, analysis, wireframing and prototyping" },
+    ],
+    sections: [
+      {
+        eyebrow: "User challenges",
+        title: "A binder and one email at a time",
+        challenges: [
+          {
+            illustration: "binder",
+            title: "Everything by hand",
+            text: "Every package was written down by hand in a physical binder.",
+          },
+          {
+            illustration: "emails",
+            title: "One email at a time",
+            text: "Each recipient had to be told about their package in a separate email.",
+          },
+          {
+            illustration: "search",
+            title: "Hard to find packages",
+            text: "Finding the right package in the binder could take a long time, especially days after it arrived.",
+          },
+          {
+            illustration: "overview",
+            title: "No overview",
+            text: "It was hard to keep track of what was registered, where each package was and who had picked it up.",
+          },
+        ],
+        images: {
+          kind: "photo",
+          items: [
+            { src: "pat-routine", caption: "The current routine" },
+            { src: "pat-binder", caption: "The binder used to register packages" },
+          ],
+        },
+      },
+      {
+        eyebrow: "Insight",
+        title: "Mapping actual user flow",
+        text: [
+          "We sent a survey to the department to learn about their routines and needs, and got 14 answers back. I used the answers to map the current workflow and possible new ones.",
+        ],
+        illustration: "survey",
+        quote: {
+          text: "It can take a ridiculously long time to find the right package in the binder, especially if someone comes in a few days after the package arrived.",
+          by: "Staff member at IT-help",
+        },
+        images: { kind: "wide", items: [{ src: "pat-survey", caption: "Survey answers and workflow" }] },
+      },
+      {
+        eyebrow: "Sketches and prototyping",
+        title: "First sketches",
+        text: [
+          "I started with sketches to explore how registration, overview and status could fit into one simple workflow.",
+          "I made the first design proposal. The interface was inspired by the shift planning system at IT-help, and by a system from an optician's shop where I used to work.",
+        ],
+        sideImage: { src: "pat-sketches", caption: "Early sketches" },
+      },
+      {
+        eyebrow: "Design choices",
+        title: "System components and logic",
+        fixLabel: "What I did",
+        fixes: [
+          {
+            problem: "Staff had no quick way to see which packages had arrived and where they were in the process.",
+            fix: "A home screen that shows the newest packages and their status at a glance.",
+            images: ["pat-design-overview"],
+          },
+          {
+            problem: "Recipient details were typed in by hand, which took time and led to mistakes.",
+            fix: "Recipients can be found directly in UiO's user database to prevent mistakes.",
+            images: ["pat-design-search"],
+          },
+          {
+            problem: "Important information about a package was easily lost between staff members.",
+            fix: "A comment field where staff can leave a note on each package.",
+            images: ["pat-design-comment"],
+          },
+        ],
+      },
+      {
+        eyebrow: "Where it is now",
+        title: "Design finished, development in progress",
+        text: [
+          "My first design proposal became the starting point for the work that followed, and it has been developed and adjusted since.",
+        ],
+        images: {
+          kind: "wide",
+          items: [
+            { src: "pat-final-dashboard", caption: "Dashboard" },
+            { src: "pat-final-packages", caption: "Package overview" },
+            { src: "pat-final-handout", caption: "Handing out a package" },
+          ],
+        },
+      },
+      {
+        eyebrow: "Reflection",
+        title: "Understand the routine before you design",
+        text: [
+          "This work showed me how important it is to understand existing routines, and the shortcuts people take, before designing anything.",
+          "By starting from how package handling actually works today, I could see where the unnecessary manual work happened and design something that fits better into the workday. Good design is built step by step, through testing, adjusting and trying again.",
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "busken",
+    name: "busken",
+    flower: "flower-green",
+    theme: { bg: "#cbd89d", ink: "#21361a", accent: "#567030", panel: "#e4ebc9" },
+    summary:
+      "Helps people of all ages find and join local clean-ups in Oslo, and give away things they no longer need.",
+    scope: ["User flows", "Mobile UI", "User insight", "Prototyping"],
+    tools: ["Figma", "Claude"],
+    cover: { kind: "phone", items: ["busken-welcome", "busken-home", "busken-map"] },
+    badge: "UXCUP 2026",
+    headline: "Making it easier to join a local clean-up",
+    intro:
+      "busken is a concept app based on this year's UXCUP case, hosted by Bekk. It helps the organisation busken run clean-ups across Oslo with volunteers of every age and background, and gives usable things a second chance with someone else.",
+    question: "How can we make it easier for people of all ages to take part in local clean-ups?",
+    facts: [
+      { label: "Target users", value: "Students, seniors and other volunteers who have time and want to help keep Oslo clean" },
+      { label: "Team", value: "Three designers" },
+      { label: "My role", value: "Interaction Designer & Developer" },
+      { label: "Responsibilities", value: "User research, concept development, wireframing, UI design and development of a functional app prototype" },
+    ],
+    sections: [
+      {
+        eyebrow: "User challenges",
+        title: "Many people wanted to help, but joining was hard",
+        challenges: [
+          {
+            icon: "layers",
+            title: "Scattered information",
+            text: "Clean-ups were only announced on social media, so people who do not use it missed out.",
+          },
+          {
+            icon: "login",
+            title: "Hard to log in",
+            text: "Logging in and signing up was a struggle, especially for older volunteers.",
+          },
+          {
+            icon: "message",
+            title: "Difficult language",
+            text: "The wording was hard to understand, and getting started took too long.",
+          },
+          {
+            icon: "chart",
+            title: "No follow-up",
+            text: "Volunteers never heard what difference their work had made.",
+          },
+        ],
+      },
+      {
+        eyebrow: "Insight",
+        title: "Feedback from users",
+        cards: [
+          {
+            title: "A retired volunteer",
+            illustration: "senior",
+            text: "Had lots of free time, but had trouble logging in. She also felt embarrassed to notify about heavy lifting being hard for her.",
+          },
+          {
+            title: "A regular volunteer",
+            illustration: "language",
+            text: "Found the language hard to understand, and the start of each clean-up slow and inefficient.",
+          },
+          {
+            title: "User reviews",
+            illustration: "impact",
+            text: "People wanted to hear what difference their work had made.",
+          },
+        ],
+        images: {
+          kind: "wide",
+          items: [
+            { src: "busken-insight-1", caption: "Insight notes, user 1" },
+            { src: "busken-insight-2", caption: "Insight notes, user 2" },
+          ],
+        },
+      },
+      {
+        eyebrow: "The solution",
+        title: "One place for clean-ups, sign-up and reuse",
+        text: [
+          "We ended up with a digital platform that gathers clean-ups, sign-up and reuse in one place, so more people can join.",
+        ],
+        fixes: [
+          {
+            problem: "Information about events was spread across several platforms, and the language was hard to follow.",
+            fix: "Events, sign-up and practical information in one app, written in clear and simple language.",
+            images: ["busken-home", "busken-events"],
+          },
+          {
+            problem: "No one heard what happened after a clean-up.",
+            fix: "A short report after every clean-up where volunteers can read about their work.",
+            images: ["busken-map", "busken-report"],
+          },
+          {
+            problem: "Usable things were thrown away.",
+            fix: "A reuse page where people can post things they no longer need, and ask for things others are giving away.",
+            images: ["busken-reuse", "busken-giveaway"],
+          },
+          {
+            problem: "Some people would rather be asked than sign up themselves.",
+            fix: "Invitations by SMS and email, for people who do not use the app often.",
+            images: ["busken-notifications", "busken-sms"],
+          },
+        ],
+      },
+      {
+        eyebrow: "Testing and user feedback",
+        title: "Feedback from three users",
+        cards: [
+          {
+            title: "Add friends",
+            text: "Users wanted to add friends and follow each other in the app.",
+          },
+          {
+            title: "Message about giveaways",
+            text: "Users wanted to send a message about things someone is giving away.",
+          },
+          {
+            title: "Pick the district automatically",
+            text: "When creating a clean-up, users wanted the app to choose the district from the address. People do not always know which district a place belongs to.",
+          },
+        ],
+      },
+      {
+        eyebrow: "Final results",
+        title: "A working version of the app",
+        text: [
+          "I used Claude to build and test a working version of busken based on the final design, so people can click through the app and try it for real.",
+        ],
+        images: {
+          kind: "screen",
+          items: [
+            { src: "busken-final-welcome", caption: "Welcome" },
+            { src: "busken-final-home", caption: "Home" },
+            { src: "busken-final-event", caption: "Clean-up details" },
+            { src: "busken-final-map", caption: "Map" },
+            { src: "busken-final-report", caption: "Report" },
+            { src: "busken-final-reuse", caption: "Reuse" },
+            { src: "busken-final-profile", caption: "Profile" },
+            { src: "busken-final-dark", caption: "Dark mode" },
+          ],
+        },
+      },
+      {
+        eyebrow: "Reflection",
+        title: "The first idea is not always the right one",
+        text: [
+          "UXCUP taught me that the first idea is not always the right one. By staying with the problem, we found new directions and ended up with a solution that covered more of the needs we had found.",
+          "The project let me challenge myself as a designer and see what it is like to work on a real problem.",
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "avtalesystem",
+    name: "Avtalesystem",
+    flower: "flower-lavender",
+    theme: { bg: "#bfc5f3", ink: "#20255a", accent: "#4b54bd", panel: "#e0e3fb" },
+    summary: "Makes it easier for both users and IT staff to book and follow up guidance sessions at IT-help, UiO.",
+    scope: ["User insight", "Personas", "User flows", "Journey mapping"],
+    tools: ["Figma"],
+    cover: { kind: "laptop", items: ["avtale-admin"] },
+    badge: "In progress",
+    headline: "Booking guidance at IT-help, for users and staff",
+    intro:
+      "Avtalesystem is a booking system for IT-help at the University of Oslo. It makes guidance sessions easier to plan and follow up, both for people who book on their own and for IT staff who book on behalf of others.",
+    question: "How can we make booking guidance sessions easier for both users and IT staff?",
+    facts: [
+      { label: "Target users", value: "People who need guidance from IT-help, and the IT-help and local IT staff who book on their behalf" },
+      { label: "Team", value: "Four designers" },
+      { label: "My role", value: "Interaction Designer" },
+      { label: "Responsibilities", value: "User insight and mapping user flows" },
+    ],
+    sections: [
+      {
+        eyebrow: "Insight",
+        title: "Five personas, five ways of booking",
+        text: [
+          "We made five personas with different roles.",
+        ],
+        challenges: [
+          { illustration: "shiftLeader", title: "Shift leader" },
+          { illustration: "itStaff", title: "IT-help staff member" },
+          { illustration: "student", title: "Student" },
+          { illustration: "external", title: "External user" },
+          { illustration: "localIt", title: "Local IT" },
+        ],
+        textAfter: [
+          "I mapped scenarios and user flows for each persona. This became the base for how the system is structured and for its main features, such as linking a guidance session to a ticket number.",
+        ],
+        images: {
+          kind: "photo",
+          items: [
+            { src: "avtale-persona", caption: "Persona: external user" },
+            { src: "avtale-journey", caption: "Journey map: external user" },
+            { src: "avtale-flow", caption: "User flow: cancelling a guidance session" },
+          ],
+        },
+      },
+      {
+        eyebrow: "The challenge",
+        title: "Not everyone has an UiO account",
+        text: [
+          "The system will be used by both internal and external users, so the design has to work for different needs. One challenge was finding a simple way to log in for both UiO users and people without an UiO account.",
+          "It taught me to think about the whole user journey, not just the system itself.",
+        ],
+        images: {
+          kind: "wide",
+          items: [
+            { src: "avtale-login", caption: "Login page" },
+            { src: "avtale-admin", caption: "Managing bookings" },
+          ],
+        },
+      },
+      {
+        eyebrow: "Where it is now",
+        title: "Still in progress",
+        text: [
+          "A decision has not yet been made on whether the system will be designed and developed in-house or handed over to an external supplier.",
+        ],
+      },
+    ],
   },
 ];
+
+export const findProject = (slug) => projects.find((p) => p.slug === slug);
