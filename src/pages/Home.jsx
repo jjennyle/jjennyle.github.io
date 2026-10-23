@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { MapPin, Briefcase, Mail, Sparkles, ArrowUpRight } from "lucide-react";
+import { MapPin, Briefcase, Mail, Sparkles, ArrowRight, ArrowDown } from "lucide-react";
 import { profile } from "../data/profile.js";
 import { projects } from "../data/projects.js";
 import { Link } from "../router.jsx";
@@ -14,7 +14,7 @@ function RotatingWord({ words }) {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setInterval(() => setI((n) => (n + 1) % words.length), 2400);
+    const t = setInterval(() => setI((n) => (n + 1) % words.length), 1700);
     return () => clearInterval(t);
   }, [words.length]);
 
@@ -45,13 +45,27 @@ function RotatingWord({ words }) {
 
 function Hero() {
   return (
-    <section className="hero grain">
-      <h1 className="hero__title">
-        <span>jenny's portfolio</span>
-        <span className="hero__row">
-          of <RotatingWord words={profile.heroWords} />
+    <section className="hero grain" aria-labelledby="hero-title">
+      <p className="hero__eyebrow">Jenny Le · UX &amp; Interaction Designer · Oslo</p>
+      <h1 id="hero-title" className="hero__title" tabIndex={-1}>
+        {/* Screen readers get the whole sentence once, instead of a changing word */}
+        <span className="visually-hidden">Jenny's portfolio of {profile.heroWords.join(", ")}</span>
+        <span className="hero__line" aria-hidden="true">
+          <span>jenny's portfolio</span>
+          <span className="hero__row">
+            of <RotatingWord words={profile.heroWords} />
+          </span>
         </span>
       </h1>
+      <p className="hero__intro">{profile.heroIntro}</p>
+      <div className="hero__actions">
+        <Link to="#work" className="btn btn--primary">
+          View my work <ArrowDown size={18} aria-hidden="true" />
+        </Link>
+        <Link to="#contact" className="btn btn--ghost">
+          Get in touch
+        </Link>
+      </div>
     </section>
   );
 }
@@ -109,41 +123,69 @@ function Intro() {
 
 function ProjectRow({ project, index }) {
   const to = `/work/${project.slug}`;
+  const role = project.facts.find((f) => f.label === "My role")?.value;
   return (
-    <Reveal as="article" className="work" style={{ "--p-bg": project.theme.bg, "--p-accent": project.theme.accent }}>
+    <Reveal
+      as="article"
+      className={`work ${project.theme.dark ? "work--dark" : ""}`}
+      style={{ "--p-bg": project.theme.bg, "--p-accent": project.theme.accent }}
+    >
       <div className="work__text">
         <p className="eyebrow">Project {String(index + 1).padStart(2, "0")}</p>
         <h3 className="work__name">
           <img src={`/images/${project.flower}.webp`} alt="" />
-          <Link to={to}>{project.name}</Link>
+          {/* The link covers the whole card, so the card is one clear click target */}
+          <Link to={to} className="work__link">
+            {project.name}
+          </Link>
         </h3>
         <p className="work__summary">{project.summary}</p>
-        <p className="work__label">Scope of responsibilities</p>
-        <ul className="chips">
-          {project.scope.map((s) => (
-            <li key={s}>{s}</li>
+        {role && (
+          <p className="work__role">
+            <span>My role</span>
+            {role}
+          </p>
+        )}
+        <ul className="chips" aria-label="Focus areas">
+          {project.categories.map((c) => (
+            <li key={c}>{c}</li>
           ))}
         </ul>
-        <p className="work__label">Tools</p>
-        <ul className="chips chips--tools">
-          {project.tools.map((t) => (
-            <li key={t}>{t}</li>
-          ))}
-        </ul>
-        <Link to={to} className="work__more">
-          Read the case study <ArrowUpRight size={16} />
-        </Link>
+        <p className="work__tools">
+          <span>Tools</span>
+          {project.tools.join(" · ")}
+        </p>
+        <span className="work__more" aria-hidden="true">
+          Read the case study <ArrowRight size={16} />
+        </span>
       </div>
-      <Link to={to} className="work__visual" aria-label={`Open ${project.name}`} tabIndex={-1}>
-        <Device kind={project.cover.kind} items={project.cover.items} alt={`${project.name} screens`} />
-      </Link>
+      <div className="work__visual">
+        <Device kind={project.cover.kind} items={project.cover.items} alt="" />
+      </div>
     </Reveal>
+  );
+}
+
+function Work() {
+  return (
+    <section id="work" className="work-list" aria-labelledby="work-title">
+      <div className="work-list__head">
+        <p className="eyebrow">Selected work</p>
+        <h2 id="work-title" className="section-title">
+          Projects
+        </h2>
+        <p className="work-list__lead">Case studies from school, work and hobbies.</p>
+      </div>
+      {projects.map((p, i) => (
+        <ProjectRow key={p.slug} project={p} index={i} />
+      ))}
+    </section>
   );
 }
 
 function About() {
   return (
-    <section id="about" className="about">
+    <section id="about" className="about" aria-label="About me">
       <Reveal className="about__text">
         <p className="eyebrow">About me</p>
         <h2 className="section-title">A bit more about me</h2>
@@ -161,14 +203,10 @@ function About() {
 
 export default function Home() {
   return (
-    <main className="page">
+    <main id="main" className="page">
       <Hero />
       <Intro />
-      <section id="work" className="work-list" aria-label="Projects">
-        {projects.map((p, i) => (
-          <ProjectRow key={p.slug} project={p} index={i} />
-        ))}
-      </section>
+      <Work />
       <About />
       <Contact />
     </main>

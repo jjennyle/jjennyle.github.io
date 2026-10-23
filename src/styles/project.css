@@ -137,7 +137,7 @@
 }
 .cs-facts {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 24px;
   margin: 36px 0 0;
   padding-top: 28px;
@@ -154,6 +154,117 @@
   margin: 8px 0 0;
   font-size: 15px;
   line-height: 1.5;
+}
+
+/* What I did vs. what the team did */
+.contribution {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+}
+.contribution > div {
+  padding: 22px 24px;
+  border-radius: var(--radius-lg);
+  background: var(--p-panel);
+  color: var(--p-ink);
+}
+.cs--dark .contribution > div:last-child {
+  background: #e6e8f3;
+  color: #171d3a;
+}
+.cs--dark .contribution > div:first-child {
+  color: var(--p-ink);
+}
+.contribution h3 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.contribution ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+}
+
+/* "On this page" links */
+.cs-toc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.cs-toc > span {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.cs-toc ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cs-toc a {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font-size: 14px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.cs-toc a:hover {
+  border-color: var(--p-accent);
+  background: var(--p-panel);
+}
+.cs--dark .cs-toc a:hover {
+  background: #e6e8f3;
+}
+
+/* Before and after */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+.compare__col {
+  padding: 24px 28px;
+  border-radius: var(--radius-lg);
+}
+.compare__col--before {
+  background: var(--surface);
+  border: 1px dashed var(--ink-3);
+}
+.compare__col--after {
+  background: var(--p-panel);
+  color: var(--p-ink);
+}
+.compare h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.compare ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.cs-section--placeholder {
+  opacity: 0.85;
 }
 
 /* Sections */
@@ -434,10 +545,13 @@
   overflow: hidden;
   max-height: 420px;
 }
-.fix__images img {
+.fix__images .zoomable {
   width: 42%;
   max-width: 190px;
   align-self: flex-start;
+}
+.fix__images img {
+  width: 100%;
   filter: drop-shadow(0 12px 18px rgba(20, 20, 30, 0.15));
 }
 /* One wide screenshot (e.g. a desktop app) instead of two phones */
@@ -446,10 +560,12 @@
   max-height: none;
   align-items: center;
 }
-.fix__images--single img {
+.fix__images--single .zoomable {
   width: 100%;
   max-width: none;
   align-self: center;
+}
+.fix__images--single img {
   border-radius: 6px;
 }
 .fix:nth-child(even) .fix__images {
@@ -490,6 +606,11 @@
 }
 .gallery--screen {
   grid-template-columns: repeat(4, 1fr);
+}
+/* Three screens keep the same size as in a row of four, centred */
+.gallery--screen.gallery--n3 {
+  grid-template-columns: repeat(3, calc((100% - 3 * 18px) / 4));
+  justify-content: center;
 }
 .gallery--screen .gallery__frame {
   background: var(--p-panel);
@@ -595,12 +716,18 @@
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
   .gallery--phone,
-  .gallery--screen {
+  .gallery--screen,
+  .gallery--screen.gallery--n3 {
     grid-template-columns: 1fr 1fr;
+    justify-content: stretch;
   }
 }
 
 @media (max-width: 760px) {
+  .contribution,
+  .compare {
+    grid-template-columns: 1fr;
+  }
   .cs-split {
     grid-template-columns: 1fr;
   }

@@ -2,13 +2,24 @@
    Image names refer to files in /public/images (without .webp).
 
    Section blocks:
-   - text:    paragraphs (textAfter: the same, but shown after challenges)
+   - text:    paragraphs (textAfter: the same, but shown after challenges).
+              **double stars** make a word bold
    - quote:   { text, by }
    - cards:   [{ title, text }]
    - stats:   [{ value, label }]   big numbers
    - illustration / sideImage: { src, caption }   shown beside the text
    - challenges: [{ icon, title, text }]   icon is a key in Project.jsx
    - fixes:   [{ problem, fix, images }]   challenge -> design move pairs
+              (problemLabel / fixLabel change the small labels)
+   - compare: { beforeLabel, before: [], afterLabel, after: [] }
+   - todo:    note about missing content, only shown on the local dev server
+   - placeholder: true   a whole section that is still missing (dev server only)
+
+   Section eyebrows follow one structure: The problem, Research & insights,
+   Design process, Design decisions, Testing & iteration, Outcome, Reflection.
+
+   contribution: { me: [], team: [] } separates Jenny's own work from the team's.
+   Only facts from the portfolio PDF, the CV or Jenny herself are used here.
    - images:  { kind: "phone" | "screen" | "wide" | "photo", items: [{ src, caption }] } */
 
 export const projects = [
@@ -18,8 +29,20 @@ export const projects = [
     flower: "flower-blue",
     theme: { bg: "#acd0ee", ink: "#122d4a", accent: "#2f6aa8", panel: "#d6e7f6" },
     summary: "Suggests outdoor activities based on users' preferences and the weather, using AI and weather data from MET.",
-    scope: ["Project lead", "Interviews", "Prototyping", "User testing"],
-    tools: ["Figma", "Jetpack Compose", "Kotlin", "Azure OpenAI API"],
+    categories: ["UX Research", "Interaction Design", "Project Lead", "Development"],
+    tools: ["Figma", "Android Studio", "Jetpack Compose", "Kotlin", "Azure OpenAI API"],
+    contribution: {
+      me: [
+        "Coordinated the team as project lead",
+        "Led the design process",
+        "Designed the UI and built parts of the front-end",
+      ],
+      team: [
+        "Interviews, design proposals and the survey",
+        "Guerrilla testing, user testing and system testing",
+        "Building the Android app with AI and weather data from MET",
+      ],
+    },
     cover: { kind: "phone", items: ["outsaide-start", "outsaide-home", "outsaide-result"] },
     badge: "IN2000, UiO",
     headline: "Outdoor plans that fit the weather",
@@ -31,11 +54,10 @@ export const projects = [
       { label: "Target users", value: "Young adults (25 to 40), with or without kids, looking for things to do alone or with family and friends" },
       { label: "Team", value: "Two designers and four developers" },
       { label: "My role", value: "Project Lead & Interaction Designer" },
-      { label: "Responsibilities", value: "Team coordination, design process leadership, UI/UX design and front-end development" },
     ],
     sections: [
       {
-        eyebrow: "User challenges",
+        eyebrow: "The problem",
         title: "Planning a day outside takes more effort than it should",
         challenges: [
           {
@@ -61,10 +83,10 @@ export const projects = [
         ],
       },
       {
-        eyebrow: "From insight to prototype",
+        eyebrow: "Research & insights",
         title: "People wanted it simple",
         textAfter: [
-          "Findings: Users wanted a simple, clear app that would quickly suggest real outdoor activities.",
+          "**Findings:** Users wanted a simple, clear app that would quickly suggest real outdoor activities.",
           "Combining interviews and a survey helped us check our findings and get a fuller picture of what users needed.",
         ],
         challenges: [
@@ -92,10 +114,13 @@ export const projects = [
             { src: "outsaide-proposals", caption: "Design proposal 1 was the target group's favourite" },
           ],
         },
+        todo: "Explain which parts of design proposal 1 you kept, and why. That links the research to the design.",
       },
       {
-        eyebrow: "Testing",
+        eyebrow: "Testing & iteration",
         title: "New insights through testing",
+        problemLabel: "What testing showed",
+        fixLabel: "What we changed",
         text: [
           "The design went through four drafts. We tested it with guerrilla testing, user testing and system testing, and used what we found to adjust wording, structure, features and accessibility.",
         ],
@@ -123,7 +148,7 @@ export const projects = [
         ],
       },
       {
-        eyebrow: "The result",
+        eyebrow: "Outcome",
         title: "The final product",
         text: [
           "An interactive Android app that uses AI and weather data from MET, the Norwegian Meteorological Institute. Users pick their preferences in six dropdown menus and get activity suggestions that fit.",
@@ -180,8 +205,20 @@ export const projects = [
     theme: { bg: "#171d3a", ink: "#f4f2ea", accent: "#3a4794", panel: "#171d3a", dark: true, highlight: "#dbe56e" },
     summary:
       "Replaces a paper binder with a digital system for registering, tracking and handing out packages at IT-help, UiO.",
-    scope: ["User insight", "Analysis", "Wireframes", "Prototyping"],
+    categories: ["UX Research", "Service Design", "Interaction Design"],
     tools: ["Figma", "Nettskjema"],
+    contribution: {
+      me: [
+        "Analysed the survey answers and mapped the current workflow and possible new ones",
+        "Made sketches, wireframes and the first design proposal in Figma",
+        "Presented each version to IT-help and adjusted the design",
+      ],
+      team: [
+        "Sent the survey to the department (14 answers)",
+        "Developed the design further after the first proposal",
+        "Building the system (eight developers)",
+      ],
+    },
     cover: { kind: "laptop", items: ["pat-dashboard-laptop"] },
     badge: "In development",
     headline: "From a paper binder to a package system",
@@ -192,11 +229,10 @@ export const projects = [
       { label: "Target users", value: "Staff at IT-help who receive and hand out packages" },
       { label: "Team", value: "Two designers and eight developers" },
       { label: "My role", value: "Interaction Designer" },
-      { label: "Responsibilities", value: "User research, analysis, wireframing and prototyping" },
     ],
     sections: [
       {
-        eyebrow: "User challenges",
+        eyebrow: "The problem",
         title: "A binder and one email at a time",
         challenges: [
           {
@@ -229,7 +265,7 @@ export const projects = [
         },
       },
       {
-        eyebrow: "Insight",
+        eyebrow: "Research & insights",
         title: "Mapping actual user flow",
         text: [
           "We sent a survey to the department to learn about their routines and needs, and got 14 answers back. I used the answers to map the current workflow and possible new ones.",
@@ -242,7 +278,7 @@ export const projects = [
         images: { kind: "wide", items: [{ src: "pat-survey", caption: "Survey answers and workflow" }] },
       },
       {
-        eyebrow: "Sketches and prototyping",
+        eyebrow: "Design process",
         title: "First sketches",
         text: [
           "I started with sketches to explore how registration, overview and status could fit into one simple workflow.",
@@ -251,8 +287,24 @@ export const projects = [
         sideImage: { src: "pat-sketches", caption: "Early sketches" },
       },
       {
-        eyebrow: "Design choices",
+        eyebrow: "Design decisions",
         title: "System components and logic",
+        compare: {
+          beforeLabel: "Before: the paper routine",
+          before: [
+            "Every package written down by hand in a binder",
+            "A separate email to each recipient",
+            "Searching through the binder to find a package",
+            "Little overview of status and pickup",
+          ],
+          afterLabel: "With PAT",
+          after: [
+            "Packages registered in one digital system",
+            "Recipients found in UiO's user database",
+            "The newest packages and their status on the home screen",
+            "Notes and pickup handled for each package",
+          ],
+        },
         fixLabel: "What I did",
         fixes: [
           {
@@ -273,7 +325,7 @@ export const projects = [
         ],
       },
       {
-        eyebrow: "Where it is now",
+        eyebrow: "Outcome",
         title: "Design finished, development in progress",
         text: [
           "My first design proposal became the starting point for the work that followed, and it has been developed and adjusted since.",
@@ -305,8 +357,21 @@ export const projects = [
     theme: { bg: "#cbd89d", ink: "#21361a", accent: "#567030", panel: "#e4ebc9" },
     summary:
       "Helps people of all ages find and join local clean-ups in Oslo, and give away things they no longer need.",
-    scope: ["User flows", "Mobile UI", "User insight", "Prototyping"],
+    categories: ["UX Research", "Interaction Design", "Prototyping", "Development"],
     tools: ["Figma", "Claude"],
+    contribution: {
+      me: [
+        "Took part in the user research and concept development",
+        "Wireframes, user flows and UI design for login, map, reuse and SMS notifications",
+        "Built the working app prototype with Claude",
+        "Tested the prototype with three users",
+      ],
+      team: [
+        "Interviewed two users",
+        "Analysed the user interviews and feedback",
+        "Designed a high-fidelity prototype in Figma",
+      ],
+    },
     cover: { kind: "phone", items: ["busken-welcome", "busken-home", "busken-map"] },
     badge: "UXCUP 2026",
     headline: "Making it easier to join a local clean-up",
@@ -317,11 +382,10 @@ export const projects = [
       { label: "Target users", value: "Students, seniors and other volunteers who have time and want to help keep Oslo clean" },
       { label: "Team", value: "Three designers" },
       { label: "My role", value: "Interaction Designer & Developer" },
-      { label: "Responsibilities", value: "User research, concept development, wireframing, UI design and development of a functional app prototype" },
     ],
     sections: [
       {
-        eyebrow: "User challenges",
+        eyebrow: "The problem",
         title: "Many people wanted to help, but joining was hard",
         challenges: [
           {
@@ -347,7 +411,7 @@ export const projects = [
         ],
       },
       {
-        eyebrow: "Insight",
+        eyebrow: "Research & insights",
         title: "Feedback from users",
         cards: [
           {
@@ -375,10 +439,26 @@ export const projects = [
         },
       },
       {
-        eyebrow: "The solution",
-        title: "One place for clean-ups, sign-up and reuse",
+        eyebrow: "Design process",
+        title: "From insight to concept",
         text: [
-          "We ended up with a digital platform that gathers clean-ups, sign-up and reuse in one place, so more people can join.",
+          "The home screen went through several versions, from a grey wireframe to a high-fidelity design in Figma. Along the way we added busken's colours and logo, and made new and upcoming clean-ups the first thing users see.",
+        ],
+        images: {
+          kind: "screen",
+          items: [
+            { src: "busken-process-wireframe", caption: "Wireframe" },
+            { src: "busken-process-first", caption: "First version" },
+            { src: "busken-process-hifi", caption: "Testing components" },
+          ],
+        },
+      },
+      {
+        eyebrow: "Design decisions",
+        title: "One place for clean-ups, sign-up and reuse",
+        problemLabel: "What we learned",
+        text: [
+          "We tested several design proposals before we chose a direction. Each decision below answers something we learned from users.",
         ],
         fixes: [
           {
@@ -404,8 +484,10 @@ export const projects = [
         ],
       },
       {
-        eyebrow: "Testing and user feedback",
+        eyebrow: "Testing & iteration",
         title: "Feedback from three users",
+        text: ["I ran guerrilla tests of the prototype with three users."],
+        todo: "Did the feedback lead to changes in the prototype? If so, describe them here. If not, say they are ideas for the next version.",
         cards: [
           {
             title: "Add friends",
@@ -422,7 +504,7 @@ export const projects = [
         ],
       },
       {
-        eyebrow: "Final results",
+        eyebrow: "Outcome",
         title: "A working version of the app",
         text: [
           "I used Claude to build and test a working version of busken based on the final design, so people can click through the app and try it for real.",
@@ -458,10 +540,17 @@ export const projects = [
     flower: "flower-lavender",
     theme: { bg: "#bfc5f3", ink: "#20255a", accent: "#4b54bd", panel: "#e0e3fb" },
     summary: "Makes it easier for both users and IT staff to book and follow up guidance sessions at IT-help, UiO.",
-    scope: ["User insight", "Personas", "User flows", "Journey mapping"],
+    categories: ["UX Research", "Service Design", "Interaction Design"],
     tools: ["Figma"],
+    contribution: {
+      me: [
+        "Main responsibility for user insight",
+        "Mapped scenarios and user flows for each persona",
+      ],
+      team: ["Created user personas", "Designed the initial system logic and components"],
+    },
     cover: { kind: "laptop", items: ["avtale-admin"] },
-    badge: "In progress",
+    badge: "Work in progress",
     headline: "Booking guidance at IT-help, for users and staff",
     intro:
       "Avtalesystem is a booking system for IT-help at the University of Oslo. It makes guidance sessions easier to plan and follow up, both for people who book on their own and for IT staff who book on behalf of others.",
@@ -470,11 +559,18 @@ export const projects = [
       { label: "Target users", value: "People who need guidance from IT-help, and the IT-help and local IT staff who book on their behalf" },
       { label: "Team", value: "Four designers" },
       { label: "My role", value: "Interaction Designer" },
-      { label: "Responsibilities", value: "User insight and mapping user flows" },
     ],
     sections: [
       {
-        eyebrow: "Insight",
+        eyebrow: "The problem",
+        title: "A booking service that does not fit the work",
+        text: [
+          "The department uses an existing booking service that does not fit how IT support works. Staff and local IT need to book sessions on behalf of users, while users should still be able to see and cancel their own bookings.",
+          "A booking also needs to be linked to a ticket, so it can be followed up as part of the case it belongs to.",
+        ],
+      },
+      {
+        eyebrow: "Research & insights",
         title: "Five personas, five ways of booking",
         text: [
           "We made five personas with different roles.",
@@ -499,7 +595,7 @@ export const projects = [
         },
       },
       {
-        eyebrow: "The challenge",
+        eyebrow: "Design process",
         title: "Not everyone has an UiO account",
         text: [
           "The system will be used by both internal and external users, so the design has to work for different needs. One challenge was finding a simple way to log in for both UiO users and people without an UiO account.",
@@ -514,7 +610,13 @@ export const projects = [
         },
       },
       {
-        eyebrow: "Where it is now",
+        eyebrow: "Design decisions",
+        title: "Choices made so far",
+        placeholder: true,
+        todo: "Which design choices came from the personas and user flows? For example how the login or the ticket number link works.",
+      },
+      {
+        eyebrow: "Outcome",
         title: "Still in progress",
         text: [
           "A decision has not yet been made on whether the system will be designed and developed in-house or handed over to an external supplier.",
